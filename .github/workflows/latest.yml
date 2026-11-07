@@ -1,0 +1,24 @@
+name: Latest
+
+# Every push to main publishes the rolling Latest release with JournalProgression-latest.zip,
+# checked and packaged by the assembly's shared addon workflow.
+# The previous asset stays downloadable until the new ZIP is built and checked.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: latest
+  cancel-in-progress: false
+
+jobs:
+  latest:
+    uses: Syntax555/mod-playerbots-portable/.github/workflows/addon-latest.yml@main
+    with:
+      asset: JournalProgression-latest.zip
+      addons: JournalProgression:JournalProgression.toc:JournalProgression
+      extras: LICENSE:JournalProgression/LICENSE.txt
