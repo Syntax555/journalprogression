@@ -952,7 +952,7 @@ local function build(panel)
 							header.total = header.total + 1
 							if done then header.done = header.done + 1 end
 						end
-						if not (db.hideDone and state == ST.DONE) then
+						if not (db.hideDone and done) then
 							table.insert(list, { id = "b" .. si .. ":" .. bi, row = row, raid = r, sec = sec, state = state, text = text,
 								optional = row.optional, done = done })
 						end
